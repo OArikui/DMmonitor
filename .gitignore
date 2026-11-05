@@ -1,9 +1,10 @@
-# Dependencies
-.psci_modules
-.spago
-bower_components
-node_modules
-
-# Generated files
-.psci
-output
+.vs/
+.vscode/
+**/bin/
+**/obj/
+*.msix
+*.msixbundle
+*.appx
+*.appxbundle
+*.pfx
+*.cer
