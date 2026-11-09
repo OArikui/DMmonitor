@@ -61,6 +61,13 @@ WinDbgのパッケージ登録は成功しています。ただし、2026-11-09 
 
 ダウンロードファイルに対する `Get-AuthenticodeSignature` は `UnknownError` を返しましたが、`Add-AppxPackage` はエラーなく終了し、WinDbgパッケージがユーザーに登録されています。AppX/MSIXパッケージの署名表示は、通常のPEファイルに対するAuthenticode検証結果と同一視しないでください。
 
+その後の確認では、WinDbgインストール後のE:の空き容量は `3,449,339,904 bytes`（約3.21 GiB）でした。`Get-AppxPackage -Name "Microsoft.WinDbg"` は次のC:のInstallLocationを返しており、E:への移動は未完了です。
+
+- `E:\_library\symbols\`: WinDbg用シンボルキャッシュの保存先として作成済み。
+- `E:\_library\tools\WinDbg\workspace\`: WinDbg作業用ディレクトリとして作成済み。
+- ユーザー環境変数 `_NT_SYMBOL_PATH`: `srv*E:\_library\symbols*https://msdl.microsoft.com/download/symbols` に設定済み。
+
+
 ## 2. ポータブル開発ツール
 
 以下はリポジトリ内に配置するポータブル開発環境です。環境変数は PowerShell の現在のセッションに設定して使用します。
