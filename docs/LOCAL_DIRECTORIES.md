@@ -37,6 +37,23 @@
 
 Windowsのパッケージボリュームはリムーバブルメディアにも作成できます。ただし、E: を取り外すと、そのボリュームに配置したパッケージはオフラインとなり利用できません。WinDbg等のMSIXアプリをE:に配置する場合は、使用時にドライブが常時接続されていることと、空き容量を確保することが必要です。
 
+## 1.2 WinDbgのダウンロード
+
+2026-11-09 に WinGet で WinDbg をダウンロードし、インストーラーハッシュの検証成功を確認しました。
+
+| 項目 | 値 |
+|---|---|
+| WinGet ID | `Microsoft.WinDbg` |
+| バージョン | `1.2611.4001.0` |
+| 保存ディレクトリ | `E:\_library\tools\WinDbg\download\` |
+| 保存ファイル | `WinDbg_1.2611.4001.0_X64_msix_en-US.msix` |
+| 配布元URL | `https://windbg.download.prss.microsoft.com/dbazure/prod/1-2611-4001-0/windbg.msixbundle` |
+| WinGet表示のSHA-256 | `158f6365f365a939429977f7bc4ca3d15f8c2a39bc3acd2b297fc36a31d69274` |
+| ダウンロード量 | 約1.14 GB |
+| 状態 | ダウンロード済み、WinGetによるハッシュ検証成功。AppXへのインストールは未実施。 |
+
+WinGetの保存ファイル名は `.msix` 拡張子ですが、配布元URLは `.msixbundle` です。インストール前に署名・パッケージ形式を確認し、Windows AppX Package Managerで受け入れられることを確認します。
+
 ## 2. ポータブル開発ツール
 
 以下はリポジトリ内に配置するポータブル開発環境です。環境変数は PowerShell の現在のセッションに設定して使用します。
