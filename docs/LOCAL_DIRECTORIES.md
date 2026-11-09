@@ -74,6 +74,24 @@ PowerShell で設定している環境変数:
 
 **証明書について:** 提示された一覧には `.cer` と `.pfx` が表示されていません。このため、MSIXの署名証明書がどこに保存されているか、またインストールに必要な信頼設定が済んでいるかは未確認です。インストール前にプロジェクトの `src\InstagramDmMonitor.App\` と出力フォルダーを検索して確認してください。
 
+### 3.2 開発用署名証明書
+
+2026-11-09 に次の公開証明書ファイルが作成されたことを確認しています。
+
+| 項目 | 値 |
+|---|---|
+| 保存ディレクトリ | `artifacts\certs\` |
+| 公開証明書 | `artifacts\certs\DMmonitor-Development.cer` |
+| 絶対パス | `E:\_library\projects\DMmonitor\artifacts\certs\DMmonitor-Development.cer` |
+| Subject / Publisher | `CN=InstagramDmMonitor-Development` |
+| Thumbprint | `F88472DFA0672BC5F2135251D908A60D74C2905C` |
+| 有効期限 | 2027-11-09 13:49:20（PCに表示されたローカル時刻） |
+| 秘密鍵の保存先 | 作成時に指定した `Cert:\CurrentUser\My` 証明書ストア。CERファイルには秘密鍵を含まない。 |
+
+この証明書でMSIXの署名付きビルドは成功しました。署名検証時点では `Get-AuthenticodeSignature` が `UnknownError`（信頼されていないルート証明書）を返しており、端末の `LocalMachine\TrustedPeople` への登録はまだ確認できていません。
+
+インストール時に使う信頼設定は、MicrosoftのMSIX手順に従って `Cert:\LocalMachine\TrustedPeople` を使用します。証明書を `Trusted Root Certification Authorities` に追加する必要はありません。証明書の信頼登録には管理者権限が必要です。
+
 ## 4. アプリのローカルデータ
 
 アプリの通知ログは、Windows の ApplicationData.Current.LocalFolder 配下に **notifications.jsonl** として保存する設計です。
