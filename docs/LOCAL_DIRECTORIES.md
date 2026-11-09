@@ -54,6 +54,26 @@ PowerShell で設定している環境変数:
 
 **E:\_library\projects\DMmonitor\artifacts\msix\InstagramDmMonitor.App_0.1.0.0_x64_Debug_Test\InstagramDmMonitor.App_0.1.0.0_x64_Debug.msix**
 
+### 3.1 MSIXのテスト出力フォルダー内
+
+2026-11-09 にユーザーが実行した `Get-ChildItem -Recurse -Force` の結果から、次の項目を確認しています。
+
+| 項目 | 用途 |
+|---|---|
+| `InstagramDmMonitor.App_0.1.0.0_x64_Debug.msix` | アプリ本体のMSIXパッケージ（約64 MB）。 |
+| `Add-AppDevPackage.ps1` | 開発用パッケージのインストール補助スクリプト。 |
+| `Install.ps1` | パッケージ出力に含まれるインストール用スクリプト。 |
+| `Add-AppDevPackage.resources\` | インストール補助スクリプトの表示文言などのリソース。 |
+| `cs-CZ\`、`de-DE\`、`en-US\`、`es-ES\`、`fr-FR\`、`it-IT\`、`ja-JP\`、`ko-KR\`、`pl-PL\`、`pt-BR\`、`ru-RU\`、`tr-TR\`、`zh-CN\`、`zh-TW\` | インストール補助スクリプトの言語別リソース。 |
+| `Add-AppDevPackage.psd1` | 言語別リソースに含まれるPowerShellデータファイル。 |
+| `Dependencies\` | Windows App SDK等の実行時依存パッケージを格納。 |
+| `Dependencies\x64\`、`x86\`、`arm64\`、`win32\` | アーキテクチャ別の依存パッケージ配置先。 |
+| `Microsoft.WindowsAppRuntime.2.msix` | Windows App Runtime 2 系の依存パッケージ。複数のアーキテクチャ／構成向けファイルが含まれる。 |
+
+依存パッケージや言語リソースはインストール用の構成要素です。内容を理解せず削除しないでください。x64 PCへのインストール時は、生成スクリプトに依存関係の選択を任せる方針です。
+
+**証明書について:** 提示された一覧には `.cer` と `.pfx` が表示されていません。このため、MSIXの署名証明書がどこに保存されているか、またインストールに必要な信頼設定が済んでいるかは未確認です。インストール前にプロジェクトの `src\InstagramDmMonitor.App\` と出力フォルダーを検索して確認してください。
+
 ## 4. アプリのローカルデータ
 
 アプリの通知ログは、Windows の ApplicationData.Current.LocalFolder 配下に **notifications.jsonl** として保存する設計です。
