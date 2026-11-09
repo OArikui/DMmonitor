@@ -97,6 +97,21 @@ PowerShell で設定している環境変数:
 
 証明書の信頼登録には管理者権限が必要です。自己署名証明書を `Trusted Root Certification Authorities` に追加する必要はありません。
 
+### 3.3 Windows Error Reporting のクラッシュダンプ
+
+ユーザーの実行結果から、次のWindows共通ダンプ保存先とDMmonitorのダンプファイルを確認しています。
+
+| 項目 | 値・用途 |
+|---|---|
+| 保存ディレクトリ | `%LOCALAPPDATA%\CrashDumps\` |
+| このPCでの絶対パス | `C:\Users\mango\AppData\Local\CrashDumps\` |
+| 用途 | Windows Error Reporting（WER）がアプリケーションのクラッシュ時に作成するダンプの保存先。 |
+| DMmonitorのファイル例 | `InstagramDmMonitor.App.exe.17116.dmp`、`InstagramDmMonitor.App.exe.13364.dmp` など。 |
+| 関連するレジストリ | `HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\InstagramDmMonitor.App.exe` |
+| 設定値 | `DumpFolder=%LOCALAPPDATA%\CrashDumps`、`DumpType=2`（フルダンプ）、`DumpCount=3`。 |
+
+このフォルダーにはDMmonitor以外のプロセスのダンプも含まれます。ダンプにはメモリ内容や個人情報が含まれる可能性があるため、外部へ共有しないでください。今回の一覧には `backgroundTaskHost.exe` と `python.exe` のダンプも存在しており、DMmonitor本体の調査では `InstagramDmMonitor.App.exe.*.dmp` のみを対象とします。
+
 ## 4. アプリのローカルデータ
 
 アプリの通知ログは、Windows の ApplicationData.Current.LocalFolder 配下に **notifications.jsonl** として保存する設計です。
