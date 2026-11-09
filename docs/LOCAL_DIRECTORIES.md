@@ -37,8 +37,9 @@ PowerShell で設定している環境変数:
 | DOTNET_CLI_HOME | E:\_library\projects\DMmonitor\.tools\dotnet-home |
 | NUGET_PACKAGES | E:\_library\projects\DMmonitor\.tools\nuget |
 | PATH | 現在のPowerShellセッションで DOTNET_ROOT を先頭に追加 |
+| DOTNET_ROOT_X64 | ユーザー環境変数として `E:\_library\projects\DMmonitor\.tools\dotnet` を登録済み。x64アプリのapphostがポータブルRuntimeを検索するために使用。 |
 
-これらの環境変数設定は現在のPowerShellセッション限定です。新しいPowerShellを開いたときは再設定が必要です。Windows全体のPATHや永続環境変数を変更する設定ではありません。
+`DOTNET_ROOT`、`DOTNET_CLI_HOME`、`NUGET_PACKAGES` は現在のPowerShellセッション限定です。新しいターミナルでは再設定が必要です。一方、`DOTNET_ROOT_X64` はユーザー環境変数として永続登録済みです。2026-11-09 にユーザーが設定コマンドの成功出力を確認しました。既に起動中のExplorer等には変更が伝播していない場合があるため、初回反映にはサインアウト／サインインが必要です。Windows全体のPATHは変更していません。
 
 ## 3. ビルド出力
 
