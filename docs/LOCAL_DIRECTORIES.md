@@ -37,9 +37,9 @@
 
 Windowsのパッケージボリュームはリムーバブルメディアにも作成できます。ただし、E: を取り外すと、そのボリュームに配置したパッケージはオフラインとなり利用できません。WinDbg等のMSIXアプリをE:に配置する場合は、使用時にドライブが常時接続されていることと、空き容量を確保することが必要です。
 
-## 1.2 WinDbgのダウンロード
+## 1.2 WinDbgのダウンロードとインストール状況
 
-2026-11-09 に WinGet で WinDbg をダウンロードし、インストーラーハッシュの検証成功を確認しました。
+2026-11-09 に WinGet で WinDbg をダウンロードし、WinGetによるインストーラーハッシュ検証成功を確認しました。
 
 | 項目 | 値 |
 |---|---|
@@ -50,9 +50,16 @@ Windowsのパッケージボリュームはリムーバブルメディアにも�
 | 配布元URL | `https://windbg.download.prss.microsoft.com/dbazure/prod/1-2611-4001-0/windbg.msixbundle` |
 | WinGet表示のSHA-256 | `158f6365f365a939429977f7bc4ca3d15f8c2a39bc3acd2b297fc36a31d69274` |
 | ダウンロード量 | 約1.14 GB |
-| 状態 | ダウンロード済み、WinGetによるハッシュ検証成功。AppXへのインストールは未実施。 |
+| ダウンロード検証 | WinGetのハッシュ検証成功 |
 
-WinGetの保存ファイル名は `.msix` 拡張子ですが、配布元URLは `.msixbundle` です。インストール前に署名・パッケージ形式を確認し、Windows AppX Package Managerで受け入れられることを確認します。
+WinDbgのパッケージ登録は成功しています。ただし、2026-11-09 の `Get-AppxPackage` 出力で実際のインストール先が次のCドライブの場所であることを確認しました。
+
+- PackageFullName: `Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe`
+- InstallLocation: `C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe`
+
+`Add-AppxPackage -Volume` を指定して実行しましたが、出力されたInstallLocationはC:でした。E:への移動はまだ完了していません。E:を既定のAppXボリュームへ変更せず、`Move-AppxPackage` でWinDbg単体を移動できるか確認する予定です。
+
+ダウンロードファイルに対する `Get-AuthenticodeSignature` は `UnknownError` を返しましたが、`Add-AppxPackage` はエラーなく終了し、WinDbgパッケージがユーザーに登録されています。AppX/MSIXパッケージの署名表示は、通常のPEファイルに対するAuthenticode検証結果と同一視しないでください。
 
 ## 2. ポータブル開発ツール
 
