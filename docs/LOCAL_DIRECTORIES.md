@@ -8,8 +8,8 @@
 
 | 種別 | パス | 用途・状態 |
 |---|---|---|
-| リポジトリルート | **E:\_library\projects\DMmonitor\\** | DMmonitor のソースコード、開発ツール、ビルド成果物をまとめる作業場所。PowerShell でこのディレクトリへ移動して作業している。 |
-| アプリプロジェクト | **E:\_library\projects\DMmonitor\src\InstagramDmMonitor.App\\** | WinUI 3 アプリ本体のプロジェクトファイル、XAML、C#コード、マニフェスト等を配置。 |
+| リポジトリルート | **E:\_library\projects\DMmonitor\** | DMmonitor のソースコード、開発ツール、ビルド成果物をまとめる作業場所。PowerShell でこのディレクトリへ移動して作業している。 |
+| アプリプロジェクト | **E:\_library\projects\DMmonitor\src\InstagramDmMonitor.App\** | WinUI 3 アプリ本体のプロジェクトファイル、XAML、C#コード、マニフェスト等を配置。 |
 
 ## 2. ポータブル開発ツール
 
@@ -17,16 +17,16 @@
 
 | ディレクトリ／ファイル | 環境変数・用途 |
 |---|---|
-| **.tools\dotnet\\** | ポータブル .NET 10 SDK の配置先。確認されたSDKバージョンは **10.0.403**。DOTNET_ROOT に設定。 |
-| **.tools\dotnet-home\\** | .NET CLI のユーザー領域。設定変数は DOTNET_CLI_HOME。 |
-| **.tools\nuget\\** | NuGet パッケージのキャッシュ・復元先。設定変数は NUGET_PACKAGES。 |
+| **.tools\dotnet\** | ポータブル .NET 10 SDK の配置先。確認されたSDKバージョンは **10.0.403**。DOTNET_ROOT に設定。 |
+| **.tools\dotnet-home\** | .NET CLI のユーザー領域。設定変数は DOTNET_CLI_HOME。 |
+| **.tools\nuget\** | NuGet パッケージのキャッシュ・復元先。設定変数は NUGET_PACKAGES。 |
 | **.tools\dotnet-install.ps1** | Microsoft公式の dotnet-install スクリプト。ポータブルSDKの取得・展開に使用。 |
 
 実際の絶対パスは、リポジトリルートを基準にした次の場所です。
 
-- **E:\_library\projects\DMmonitor\.tools\dotnet\\**
-- **E:\_library\projects\DMmonitor\.tools\dotnet-home\\**
-- **E:\_library\projects\DMmonitor\.tools\nuget\\**
+- **E:\_library\projects\DMmonitor\.tools\dotnet\**
+- **E:\_library\projects\DMmonitor\.tools\dotnet-home\**
+- **E:\_library\projects\DMmonitor\.tools\nuget\**
 - **E:\_library\projects\DMmonitor\.tools\dotnet-install.ps1**
 
 PowerShell で設定している環境変数:
@@ -44,10 +44,10 @@ PowerShell で設定している環境変数:
 
 | ディレクトリ | 用途・状態 |
 |---|---|
-| **src\InstagramDmMonitor.App\bin\x64\Debug\net10.0-windows10.0.26100.0\\** | 通常ビルドの出力先。DLL等のビルド成果物が生成されたことを確認済み。 |
-| **src\InstagramDmMonitor.App\obj\\** | .NET/MSBuild が使用する中間生成物の標準出力先。ビルド時に自動生成される領域。 |
-| **artifacts\msix\\** | MSIXパッケージの出力先として今回の作業で作成。 |
-| **artifacts\msix\InstagramDmMonitor.App_0.1.0.0_x64_Debug_Test\\** | MSIXパッケージの出力フォルダー。 |
+| **src\InstagramDmMonitor.App\bin\x64\Debug\net10.0-windows10.0.26100.0\** | 通常ビルドの出力先。DLL等のビルド成果物が生成されたことを確認済み。 |
+| **src\InstagramDmMonitor.App\obj\** | .NET/MSBuild が使用する中間生成物の標準出力先。ビルド時に自動生成される領域。 |
+| **artifacts\msix\** | MSIXパッケージの出力先として今回の作業で作成。 |
+| **artifacts\msix\InstagramDmMonitor.App_0.1.0.0_x64_Debug_Test\** | MSIXパッケージの出力フォルダー。 |
 | **artifacts\msix\InstagramDmMonitor.App_0.1.0.0_x64_Debug_Test\InstagramDmMonitor.App_0.1.0.0_x64_Debug.msix** | 2026-11-09 のビルドで生成成功を確認したMSIXパッケージ。 |
 
 確認済みのMSIXファイルの絶対パス:
