@@ -88,9 +88,13 @@ PowerShell で設定している環境変数:
 | 有効期限 | 2027-11-09 13:49:20（PCに表示されたローカル時刻） |
 | 秘密鍵の保存先 | 作成時に指定した `Cert:\CurrentUser\My` 証明書ストア。CERファイルには秘密鍵を含まない。 |
 
-この証明書でMSIXの署名付きビルドは成功しました。署名検証時点では `Get-AuthenticodeSignature` が `UnknownError`（信頼されていないルート証明書）を返しており、端末の `LocalMachine\TrustedPeople` への登録はまだ確認できていません。
+この証明書でMSIXの署名付きビルドに成功し、2026-11-09 に `Get-AuthenticodeSignature` が `Status: Valid` を返すことを確認しました。
 
-インストール時に使う信頼設定は、MicrosoftのMSIX手順に従って `Cert:\LocalMachine\TrustedPeople` を使用します。証明書を `Trusted Root Certification Authorities` に追加する必要はありません。証明書の信頼登録には管理者権限が必要です。
+- 秘密鍵を含む証明書: `Cert:\CurrentUser\My` に作成。
+- 公開証明書の信頼先: `Cert:\LocalMachine\TrustedPeople` への登録成功を確認。
+- `Cert:\LocalMachine\TrustedPeople` の証明書Thumbprint: `F88472DFA0672BC5F2135251D908A60D74C2905C`。
+
+証明書の信頼登録には管理者権限が必要です。自己署名証明書を `Trusted Root Certification Authorities` に追加する必要はありません。
 
 ## 4. アプリのローカルデータ
 
